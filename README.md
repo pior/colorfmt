@@ -35,8 +35,9 @@ func main() {
 Format: `fgColor+fgAttributes:bgColor+bgAttributes`
 
 Examples:
-- `{red}`
-- `{yellow:bg}`
+- `{red}` (red text)
+- `{yellow:bh}` (bold light-yellow text)
+- `{red+white:h}` (red text on light-white background)
 
 Colors:
 - black
