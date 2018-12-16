@@ -3,6 +3,7 @@ package colorfmt
 import (
 	"fmt"
 	"io"
+	"os"
 )
 
 // Formatter interprets the color tags in a string and prints it to the file provided
@@ -22,6 +23,11 @@ func New(file io.Writer, enableColor bool) *Formatter {
 
 // Printf interprets tags and print the colorized text
 func (f *Formatter) Printf(format string, a ...interface{}) error {
-	_, err := fmt.Fprintf(f.file, scan(format, '{', '}', f.processor), a...)
+	_, err := fmt.Fprintf(f.file, scan(format, f.processor), a...)
 	return err
+}
+
+// Printf interprets tags and print the colorized text to stdout
+func Printf(format string, a ...interface{}) error {
+	return New(os.Stdout, true).Printf(format, a...)
 }

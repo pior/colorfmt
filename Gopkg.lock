@@ -10,14 +10,6 @@
   version = "v1.1.1"
 
 [[projects]]
-  branch = "master"
-  digest = "1:1ece6443493a8a03e9d818b0be758ae9137a05035d906aa21eeda69cb5fd2be6"
-  name = "github.com/dolab/colorize"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "10753a0b4d680dcdc8313119eb75b231d8f61a0b"
-
-[[projects]]
   digest = "1:0028cb19b2e4c3112225cd871870f2d9cf49b9b4276531f03438a88e94be86fe"
   name = "github.com/pmezard/go-difflib"
   packages = ["difflib"]
@@ -39,9 +31,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = [
-    "github.com/dolab/colorize",
-    "github.com/stretchr/testify/require",
-  ]
+  input-imports = ["github.com/stretchr/testify/require"]
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -1,9 +1,12 @@
 package colorfmt
 
-func scan(text string, openingChar, closingChar rune, processor tagProcessor) string {
+const openingChar, closingChar = '{', '}'
+
+func scan(text string, processor tagProcessor) string {
 	var in bool
 	var tag string
 	var output string
+	var colorized bool
 
 	for _, char := range text {
 		if in {
@@ -11,7 +14,11 @@ func scan(text string, openingChar, closingChar rune, processor tagProcessor) st
 				in = false
 				output += string(char)
 			} else if char == closingChar {
-				output += processor(tag)
+				colorCode := processor(tag)
+				if colorCode != "" {
+					output += colorCode
+					colorized = true
+				}
 				in = false
 				tag = ""
 			} else {
@@ -26,5 +33,10 @@ func scan(text string, openingChar, closingChar rune, processor tagProcessor) st
 		}
 	}
 
-	return output
+	resetCode := processor("reset")
+	if colorized {
+		output += resetCode
+	}
+
+	return resetCode + output
 }
